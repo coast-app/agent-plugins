@@ -1,0 +1,22 @@
+{
+    "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+    "name": "coast",
+    "description": "Coast plugins for connecting agents to your Coast workspace.",
+    "owner": {
+        "name": "Coast",
+        "url": "https://coastapp.com"
+    },
+    "plugins": [
+        {
+            "name": "coast-mcp",
+            "description": "Connect Claude to your Coast workspace: workspaces, workflow templates, entities, automations, and messaging.",
+            "author": {
+                "name": "Coast",
+                "url": "https://github.com/coast-app"
+            },
+            "category": "productivity",
+            "source": "./plugins/coast-mcp",
+            "homepage": "https://github.com/coast-app/agent-plugins/tree/main/plugins/coast-mcp"
+        }
+    ]
+}
