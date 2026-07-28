@@ -1,6 +1,6 @@
 {
     "name": "coast-mcp",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Connect agents to your Coast workspace: workspaces, workflow templates, entities, automations, and messaging.",
     "author": {
         "name": "Coast",
