@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coast Product Context"
+  short_description: "Shared Coast product terminology and concepts."
+  default_prompt: "Ground this in accurate Coast product terminology and concepts."

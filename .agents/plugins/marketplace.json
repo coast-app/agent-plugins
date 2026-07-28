@@ -1,0 +1,32 @@
+{
+    "name": "coast",
+    "interface": {
+        "displayName": "Coast"
+    },
+    "plugins": [
+        {
+            "name": "coast-mcp",
+            "source": {
+                "source": "local",
+                "path": "./plugins/coast-mcp"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Productivity"
+        },
+        {
+            "name": "coast-context",
+            "source": {
+                "source": "local",
+                "path": "./plugins/coast-context"
+            },
+            "policy": {
+                "installation": "AVAILABLE",
+                "authentication": "ON_INSTALL"
+            },
+            "category": "Productivity"
+        }
+    ]
+}

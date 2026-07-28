@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coast MCP Basics"
+  short_description: "How Coast data is organised and which MCP tools to use."
+  default_prompt: "Use the Coast MCP tools correctly for this task."

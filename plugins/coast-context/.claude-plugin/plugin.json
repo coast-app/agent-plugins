@@ -1,8 +1,8 @@
 {
     "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
-    "name": "coast-mcp",
+    "name": "coast-context",
     "version": "0.1.0",
-    "description": "Connect Claude to your Coast workspace: workspaces, workflow templates, entities, automations, and messaging.",
+    "description": "Coast product domain and terminology: workspaces, workflow templates, components, views, forms, automations, and dashboards.",
     "author": {
         "name": "Coast",
         "url": "https://github.com/coast-app"
@@ -11,13 +11,10 @@
     "repository": "https://github.com/coast-app/agent-plugins",
     "keywords": [
         "coast",
-        "mcp",
+        "product-context",
+        "terminology",
         "workflow",
-        "operations",
-        "field-service"
-    ],
-    "dependencies": [
-        "coast-context"
+        "cmms"
     ],
     "skills": "./skills/"
 }

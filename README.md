@@ -16,13 +16,28 @@ Then authenticate when Claude first calls a Coast tool.
 
 | Plugin | Description |
 | --- | --- |
-| [`coast-mcp`](./plugins/coast-mcp) | Connects Claude to your Coast workspace and bundles guidance on the Coast data model. |
+| [`coast-mcp`](./plugins/coast-mcp) | Connects your agent to your Coast workspace. Pulls in `coast-context`. |
+| [`coast-context`](./plugins/coast-context) | Coast product domain and terminology. |
+
+## Codex
+
+The same plugins work with OpenAI Codex:
+
+```
+codex plugin marketplace add coast-app/agent-plugins
+codex plugin install coast-mcp
+```
 
 ## Repository layout
 
 ```
-.claude-plugin/marketplace.json   marketplace manifest ("coast")
-plugins/<plugin-name>/            one directory per plugin
+.claude-plugin/marketplace.json   Claude Code marketplace manifest ("coast")
+.agents/plugins/marketplace.json  Codex marketplace manifest
+plugins/<plugin-name>/
+  .claude-plugin/plugin.json      Claude Code manifest
+  .codex-plugin/plugin.json       Codex manifest
+  skills/<skill>/SKILL.md         skill body
+  skills/<skill>/agents/openai.yaml   Codex skill interface
 ```
 
 Each plugin is versioned independently. Releases are tagged `<plugin-name>--v<version>`, created with

@@ -17,6 +17,17 @@
             "category": "productivity",
             "source": "./plugins/coast-mcp",
             "homepage": "https://github.com/coast-app/agent-plugins/tree/main/plugins/coast-mcp"
+        },
+        {
+            "name": "coast-context",
+            "description": "Coast product domain and terminology: workspaces, workflow templates, components, views, forms, automations, and dashboards.",
+            "author": {
+                "name": "Coast",
+                "url": "https://github.com/coast-app"
+            },
+            "category": "productivity",
+            "source": "./plugins/coast-context",
+            "homepage": "https://github.com/coast-app/agent-plugins/tree/main/plugins/coast-context"
         }
     ]
 }

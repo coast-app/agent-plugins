@@ -1,0 +1,30 @@
+{
+    "name": "coast-context",
+    "version": "0.1.0",
+    "description": "Coast product domain and terminology: workspaces, workflow templates, components, views, forms, automations, and dashboards.",
+    "author": {
+        "name": "Coast",
+        "url": "https://github.com/coast-app"
+    },
+    "repository": "https://github.com/coast-app/agent-plugins",
+    "keywords": [
+        "coast",
+        "product-context",
+        "terminology",
+        "workflow",
+        "cmms"
+    ],
+    "skills": "./skills/",
+    "interface": {
+        "displayName": "Coast Context",
+        "shortDescription": "Coast product domain and terminology.",
+        "longDescription": "Coast product concepts, domain terminology, and the workflow model: organizations, workspaces, workflow templates, components, views, forms, automations, and dashboards.",
+        "developerName": "Coast",
+        "category": "Productivity",
+        "defaultPrompt": [
+            "Explain the relevant Coast concepts for this work.",
+            "Use accurate Coast terminology in this answer.",
+            "Model this operational process using Coast primitives."
+        ]
+    }
+}
