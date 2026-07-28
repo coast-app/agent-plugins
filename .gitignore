@@ -1,0 +1,2 @@
+# Plugin MCP configs are source here, but many global gitignores exclude .mcp.json.
+!.mcp.json
