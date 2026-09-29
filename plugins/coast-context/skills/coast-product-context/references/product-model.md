@@ -116,7 +116,7 @@ This distinction matters:
 
 - A source/library template defines what can be installed.
 - A workspace's copied workflow template is what live cards, views, automations, and later edits use.
-- Source template IDs, copied template IDs, and copied component IDs are not interchangeable by default.
+- Source and installed template IDs identify different templates. Interpret a component ID in the context of its owning template; do not assume every nested ID changes during installation.
 
 ## Workflow Bundles
 
@@ -124,9 +124,7 @@ Workflow bundles are predefined collections of workspaces, templates, views, das
 
 Bundles are starting points, not locked products. After a bundle is installed, the created workspaces and templates can be customized to match the customer's process.
 
-Library and sharing work may also refer to workflow listings, bundle listings, share/install links, or apps/packages in draft terminology. Current specs control naming in customer-facing copy; the underlying model is an installable package of Coast configuration.
-
-Installed bundle linkage depends on the current product spec. In most product explanations, the installed workspaces are customizable copies.
+Coast curates the library's bundle listings. Customers can share a workflow workspace or a section of workspaces directly through an install link without publishing it to the library or entering an approval process. Either path installs customizable copies of the source configuration.
 
 ## Workflow Entities
 
@@ -144,7 +142,7 @@ Examples:
 - customer account
 - sales lead
 
-Each card/entity has structured field values and can also have its own discussion thread.
+Each card/entity has structured field values. Standalone cards, such as work orders and assets, have their own discussion threads.
 
 ## Views
 

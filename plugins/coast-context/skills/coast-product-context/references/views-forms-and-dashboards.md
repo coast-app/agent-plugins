@@ -19,7 +19,7 @@ This reference describes how people see, enter, scan, share, and summarize Coast
 
 ## Views Are Experience Layers
 
-Views control how cards/workflow entities appear. They do not create a separate copy of the data. The same record can appear in a list, table, board, calendar, card/detail view, public form, or public shared-card surface. Dashboards sit one level up: dashboard widgets summarize or link to filtered workflow views rather than acting as another record view.
+View templates are the saved views people select. They control how cards/workflow entities appear without creating another view object or a copy of the data. The same record can appear in a list, table, board, calendar, card/detail view, or public shared-card surface. An external form collects a new record. Dashboards sit one level up: dashboard widgets summarize or link to filtered workflow views rather than acting as another record view.
 
 This means a workspace's usefulness depends on both:
 

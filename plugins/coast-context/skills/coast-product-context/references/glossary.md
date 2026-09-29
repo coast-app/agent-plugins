@@ -25,18 +25,18 @@ This reference defines Coast terminology and translates older API-oriented langu
 | Related card | The active relationship field from one card/workflow entity to another. |
 | Referenced in | The reverse display that shows records that link back through a related-card field. |
 | Related card lookup | A field that displays information from a related entity/card without manually duplicating that data. |
-| Subform | Embedded structured data inside a parent card, commonly used for procedures, checklists, and inspections. |
+| Subform | Embedded structured data inside a parent card, not an independently created child card; commonly used for procedures, checklists, and inspections. |
 | Subform workflow template | The workflow template backing a subform. Subforms are embedded in a parent card but still have a template shape. |
-| View template | A saved way to display or collect cards/workflow entities. Views include detail/card views and collection views like list, table, board, and calendar. |
+| View template | The saved configuration selected to display, edit, or collect cards/workflow entities. Card views and collection views such as list, table, board, and calendar are view templates, not separate generated views. |
 | Card view | A single-entity detail, create, read-only, or form surface. |
 | Collection view | A multi-entity surface such as list, table, board, or calendar. |
 | External form | A public card view used as a form definition so non-Coast users can submit cards. |
-| External form link | A shared distribution link for an external form. Links can support sharing patterns such as QR codes and prefilled values. |
+| External form link | A link to a public create form. It can be shared as a QR code or carry prefilled values. |
 | Automation | A configured rule that reacts to an event or manual trigger and performs actions such as updating fields, sending messages, creating entities, or calculating values. |
 | Dashboard widget | A dashboard block that summarizes or links to workflow data, often filtered by status, assignee, dates, or favorites. |
 | Dashboard favorite | A saved/favorited dashboard widget or shortcut back to a useful operational view. |
 | Workflow bundle | A predefined set of workspace(s), templates, views, dashboards, and automations for a common business scenario. Bundles are starting points that can be customized. |
-| Workflow listing | A library/discovery entry for a workflow bundle or installable workflow configuration. Some code/docs may call this a `WorkflowListItem` or bundle listing. |
+| Library listing | A Coast-curated discovery entry for an installable bundle (`BundleListing` / `PublicBundleListing`). A customer can share a bundle directly without a listing. Legacy `WorkflowListItem` belongs to a separate older API path. |
 | Activity feed | A chronological surface for recent activity across Coast. |
 | Low Code / LC | The older Coast workflow/card-definition system and migration context. |
 | No Code / NC | The newer workflow-template/entity system and builder context. |

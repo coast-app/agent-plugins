@@ -105,7 +105,7 @@ Lookups fit situations where people need to see related information without manu
 
 Subforms are embedded structured data inside a parent entity. They are useful for checklists, inspections, procedures, or repeatable sections that should live inside one record rather than as a full separate workspace.
 
-Subforms are backed by subform workflow templates. They can have their own field shape and form behavior, but they should still be treated as embedded structure inside the parent card, not as independent operational workspaces.
+Subforms are backed by subform workflow templates. They can have their own field shape and form behavior, but their data remains embedded in the parent card rather than becoming an independent child card or workspace.
 
 Subforms fit situations where:
 
