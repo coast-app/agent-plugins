@@ -146,7 +146,7 @@ Each card/entity has structured field values. Standalone cards, such as work ord
 
 ## Views
 
-Views are not separate data. They are saved presentations of cards/workflow entities.
+View templates are saved configurations for presenting existing cards/workflow entities or collecting input for new ones. They do not create separate view objects or copies of the data.
 
 The same cards/workflow entities can appear in multiple views:
 
@@ -154,9 +154,10 @@ The same cards/workflow entities can appear in multiple views:
 - active work grouped by status on a board
 - due work on a calendar
 - one card/entity in a card/detail view
-- a public external request form
 
-This separation matters: change the view to change the experience; change the template to change the underlying data model.
+A public external request form collects a new card/entity. A public shared-card view shows an existing record read-only.
+
+This separation matters: change the view template to change the experience; change the workflow template to change the underlying data model.
 
 ## Activity Feed
 

@@ -36,7 +36,7 @@ This reference defines Coast terminology and translates older API-oriented langu
 | Dashboard widget | A dashboard block that summarizes or links to workflow data, often filtered by status, assignee, dates, or favorites. |
 | Dashboard favorite | A saved/favorited dashboard widget or shortcut back to a useful operational view. |
 | Workflow bundle | A predefined set of workspace(s), templates, views, dashboards, and automations for a common business scenario. Bundles are starting points that can be customized. |
-| Library listing | A Coast-curated discovery entry for an installable bundle (`BundleListing` / `PublicBundleListing`). A customer can share a bundle directly without a listing. Legacy `WorkflowListItem` belongs to a separate older API path. |
+| Library listing | A Coast-curated discovery entry for an installable workflow bundle. Customers can separately share a workflow workspace or workspace section through an install link without publishing it to the library. |
 | Activity feed | A chronological surface for recent activity across Coast. |
 | Low Code / LC | The older Coast workflow/card-definition system and migration context. |
 | No Code / NC | The newer workflow-template/entity system and builder context. |
