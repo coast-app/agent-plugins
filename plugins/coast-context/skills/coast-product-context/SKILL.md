@@ -1,33 +1,38 @@
 ---
 name: coast-product-context
-description: Coast product concepts and workflow modeling guidance. Use when designing, configuring, or using Coast through MCP; translating an operational process into workspaces, records, components, views, relationships, and automations; or explaining Coast terminology.
+description: "Coast product behavior and workflow modeling. Use for components, views, sharing, access, search, notifications, dashboards, AI, data exchange, billing, client capabilities, or configuring and using Coast through MCP."
 ---
 
 # Coast Product Context
 
-Use this to reason about Coast and design workflows from its building blocks. Coast is a no-code CMMS and work-management product for maintenance-heavy, deskless, and operational teams. It combines team communication with configurable workflow data: every workspace has chat, and workflow workspaces add structured records built from reusable templates, components, views, relationships, and automations.
+Use this reference to understand Coast and model work with its configurable building blocks. Start with [The shape of Coast](references/product-model.md) for the product hierarchy, [Modeling decisions](references/modeling-decisions.md) to translate a process into a design, or [Terminology](references/glossary.md) for an unfamiliar name. Read only the topics needed for the task.
 
-Apply the modeling guidance and examples to the user’s process. When acting through MCP, inspect the existing workspace and template configuration and use the connected tools’ schemas for available operations and exact parameters.
+## Find the owning topic
 
-## Reference Map
+The [product reference index](references/ontology.md) follows the organization into its workspaces, structured work, and connected experiences.
 
-Start with the reader's question and read only the references needed:
+### The organization and its workspaces
 
-| Question | Reference |
-| --- | --- |
-| Where does work live, and who can access it? | [Product structure](references/product-model.md) |
-| What defines a record, its values, relationships, and embedded answers? | [Workflow building blocks](references/workflow-building-blocks.md) |
-| How should this operational process be modeled? | [Modeling decisions](references/modeling-decisions.md) |
-| How should people browse, enter, and summarize records? | [Views, forms, and dashboards](references/views-forms-and-dashboards.md) |
-| What changes a record or generates recurring work? | [Automations and recurrence](references/automations-and-recurrence.md) |
-| What does this product or API term mean? | [Glossary](references/glossary.md) |
+[People](references/organization/people.md), [Access](references/organization/access.md), and [Plans and billing](references/organization/plans-and-billing.md) explain identity and the different limits on an experience. [Workspaces](references/organization/workspaces.md) explains sections, workspace varieties, and lifecycle; [Conversations](references/organization/conversations.md) explains workspace, record, and direct discussions.
 
-## Interpretation Notes
+### Structured work
 
-- The real business noun is usually clearest when one exists: work order, asset, location, request, vendor, part, inspection.
-- "Card" fits current UI and customer learning material. "Workflow entity" fits internal, product, API, MCP, or implementation contexts where precision matters.
-- Legacy/API translations are often relevant: channel means workspace; business usually means organization; card/entity usually means workflow entity.
-- Coast is best represented as composable primitives rather than one-off feature modules.
-- A modeled design may require configuration beyond the connected tools’ capabilities. Establish what those tools support before promising to build it, and identify any remaining setup.
-- For workflow-shaped work, identify the real-world entities, lifecycle, relationships, views, and explicit automations needed to keep data moving.
-- When a process repeats, distinguish record generation from a rule invoked relative to a Date field.
+- **Definitions and data:** [Workflow templates](references/workflows/templates.md), [Components](references/workflows/components.md), and [Records](references/workflows/records.md). Components includes shared settings, the complete catalogue, relationships, and embedded subforms.
+- **Presentation and selection:** [View templates](references/workflows/view-templates.md) owns forms, collection varieties, layouts, and saved versus temporary configuration. [Record selection](references/workflows/record-selection.md) owns filters, groups, sorting, and summaries.
+- **Behavior:** [Automations](references/workflows/automations.md) and [Recurring work](references/workflows/recurrence.md).
+
+### Across workspaces
+
+[Search and navigation](references/across-workspaces/search-and-navigation.md), [Attention and activity](references/across-workspaces/attention-and-activity.md), [Dashboards](references/across-workspaces/dashboards.md), and [Reports](references/across-workspaces/reports.md) explain discovery, personal attention, and summaries of work.
+
+### Distribution, exchange, and assistance
+
+[Workflow distribution](references/exchange/workflow-distribution.md) explains the library, bundles, customer sharing, and copies. [Import](references/exchange/import.md), [Export](references/exchange/export.md), and [Integrations](references/exchange/integrations.md) explain external data exchange. [AI assistance](references/ai-assistance.md) explains Ask, Capture, proposals, and saved effects.
+
+## Apply the model
+
+Inspect the customer's existing configuration before proposing a new shape. Use the real business noun when it is clearer: work order, asset, inspection, location, or part. Favor composable capabilities over special behavior inferred from a name. Preserve customer-authored language and the selected view's configuration.
+
+Distinguish product behavior, the person's access, customer configuration, plan limits, client support, and connected-tool capabilities. A schema type alone does not establish an available feature, and missing documentation does not establish absence. Use confirmed account information for current entitlements, prices, and limits.
+
+For construction procedures and worked examples, use `coast-workspace-patterns:coast-workspace-patterns`. For connection, discovery, identifiers, and entity value shapes, use `coast-mcp:coast-mcp-basics`. The connected tools' schemas own available operations and exact inputs. A design can require configuration beyond those tools; identify any remaining setup rather than promising an unsupported operation.

@@ -1,7 +1,7 @@
 {
     "name": "coast-context",
-    "version": "0.1.1",
-    "description": "Coast product domain and terminology: workspaces, workflow templates, components, views, forms, automations, and dashboards.",
+    "version": "0.2.0",
+    "description": "Coast product concepts, behavior, terminology, and workflow modeling guidance.",
     "author": {
         "name": "Coast",
         "url": "https://github.com/coast-app"
@@ -17,8 +17,8 @@
     "skills": "./skills/",
     "interface": {
         "displayName": "Coast Context",
-        "shortDescription": "Coast product domain and terminology.",
-        "longDescription": "Coast product concepts, domain terminology, and the workflow model: organizations, workspaces, workflow templates, components, views, forms, automations, and dashboards.",
+        "shortDescription": "Coast product concepts and workflow modeling.",
+        "longDescription": "Shared Coast product definitions, behavior, and modeling guidance for understanding existing workflows and designing new ones.",
         "developerName": "Coast",
         "category": "Productivity",
         "capabilities": [],

@@ -1,8 +1,8 @@
 {
     "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
     "name": "coast-context",
-    "version": "0.1.1",
-    "description": "Coast product domain and terminology: workspaces, workflow templates, components, views, forms, automations, and dashboards.",
+    "version": "0.2.0",
+    "description": "Coast product concepts, behavior, terminology, and workflow modeling guidance.",
     "author": {
         "name": "Coast",
         "url": "https://github.com/coast-app"

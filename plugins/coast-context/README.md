@@ -14,11 +14,6 @@ In Claude Code, installing [`coast-mcp`](../coast-mcp) pulls this in automatical
 
 ## Use
 
-The `coast-product-context` skill helps agents choose Coast building blocks for a customer's process:
+Use `coast-product-context` to understand existing Coast configuration or design a workflow. Start with [The shape of Coast](skills/coast-product-context/references/product-model.md), then use the [product reference index](skills/coast-product-context/references/ontology.md) to find the relevant concepts and behavior. [Modeling decisions](skills/coast-product-context/references/modeling-decisions.md) helps translate an operational process into records, components, relationships, views, and automations.
 
-- [Find the organization's workspaces, access, and shared configuration](skills/coast-product-context/references/product-model.md), and [translate Coast terminology](skills/coast-product-context/references/glossary.md).
-- [Choose a model for the process](skills/coast-product-context/references/modeling-decisions.md), then [understand the templates, records, fields, relationships, and subforms](skills/coast-product-context/references/workflow-building-blocks.md) that give it shape.
-- [Design collections, forms, and dashboards](skills/coast-product-context/references/views-forms-and-dashboards.md) for the people doing the work.
-- [Separate automations from recurring records](skills/coast-product-context/references/automations-and-recurrence.md) when planning what happens next.
-
-Adapt the examples to the customer's process and existing configuration. For step-by-step configuration examples, use [Coast Workspace Patterns](../coast-workspace-patterns/). For available operations and exact parameters, read the connected Coast MCP tool schemas.
+Adapt the examples to the customer's process and existing configuration. For step-by-step configuration recipes, use [Coast Workspace Patterns](../coast-workspace-patterns/). For available operations and exact parameters, read the connected Coast MCP tool schemas.
