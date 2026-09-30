@@ -55,6 +55,8 @@ Common categories:
 | UI helpers | input button, combined tags | Quick actions and dense list displays |
 | System or advanced helpers | entity batch, system metadata | Recurrence, batch creation, generated links, auditing |
 
+Interpret a component ID in the context of its owning template. When a template is [copied for installation](product-model.md#template-copies), do not assume every nested ID changes.
+
 ## Tags
 
 Tags are best for finite states, categories, and process stages.

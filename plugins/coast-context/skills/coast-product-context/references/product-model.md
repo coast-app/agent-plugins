@@ -116,7 +116,7 @@ This distinction matters:
 
 - A source/library template defines what can be installed.
 - A workspace's copied workflow template is what live cards, views, automations, and later edits use.
-- Source and installed template IDs identify different templates. Interpret a component ID in the context of its owning template; do not assume every nested ID changes during installation.
+- Source and installed template IDs identify different templates.
 
 ## Workflow Bundles
 
