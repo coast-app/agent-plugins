@@ -16,17 +16,21 @@ Then authenticate when Claude first calls a Coast tool.
 
 | Plugin | Description |
 | --- | --- |
-| [`coast-mcp`](./plugins/coast-mcp) | Connects your agent to your Coast workspace. Pulls in `coast-context`. |
+| [`coast-mcp`](./plugins/coast-mcp) | Connects your agent to your Coast workspace. In Claude Code, pulls in `coast-context` and `coast-workspace-patterns`. |
 | [`coast-context`](./plugins/coast-context) | Coast product domain and terminology. |
 
 ## Codex
 
-The same plugins work with OpenAI Codex:
+The same plugins work with OpenAI Codex. Install all three explicitly:
 
 ```
-codex plugin marketplace add coast-app/agent-plugins
-codex plugin install coast-mcp
+codex plugin marketplace add https://github.com/coast-app/agent-plugins.git
+codex plugin add coast-mcp@coast
+codex plugin add coast-context@coast
+codex plugin add coast-workspace-patterns@coast
 ```
+
+Start a new Codex session after installing.
 
 ## Repository layout
 

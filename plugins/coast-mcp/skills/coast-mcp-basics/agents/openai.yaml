@@ -1,4 +1,4 @@
 interface:
   display_name: "Coast MCP Basics"
-  short_description: "How Coast data is organised and which MCP tools to use."
-  default_prompt: "Use the Coast MCP tools correctly for this task."
+  short_description: "Find Coast data and supply valid entity field values."
+  default_prompt: "Use $coast-mcp-basics to select Coast tools and supply the correct identifiers and values."

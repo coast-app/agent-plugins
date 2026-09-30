@@ -1,6 +1,6 @@
 # coast-context
 
-Coast product domain and terminology for agents, so they describe and model Coast work accurately.
+Product concepts and modeling guidance for agents designing and using Coast workflows. Paired with Coast MCP access, it helps customer agents turn operational needs into useful configurations and work with existing data.
 
 ## Install
 
@@ -12,22 +12,13 @@ Coast product domain and terminology for agents, so they describe and model Coas
 
 Installing [`coast-mcp`](../coast-mcp) pulls this in automatically.
 
-## What you get
+## Use
 
-The `coast-product-context` skill, covering:
+The `coast-product-context` skill helps agents choose Coast building blocks for a customer's process:
 
-| Reference | Contents |
-| --- | --- |
-| `glossary.md` | Product vocabulary, and how it maps to older API naming |
-| `product-model.md` | Organizations, workspace sections, workspaces, chat, templates, entities |
-| `workflow-building-blocks.md` | Templates, entities, components, relationships, subforms |
-| `views-forms-and-dashboards.md` | Card and collection views, external forms, layouts, dashboards |
-| `automations-and-behavior.md` | Automations, notifications, scheduling, computed values |
-| `modeling-notes.md` | How Coast primitives map onto real operational work |
+- [Find the organization's workspaces, access, and shared configuration](skills/coast-product-context/references/product-model.md), and [translate Coast terminology](skills/coast-product-context/references/glossary.md).
+- [Choose a model for the process](skills/coast-product-context/references/modeling-decisions.md), then [understand the templates, records, fields, relationships, and subforms](skills/coast-product-context/references/workflow-building-blocks.md) that give it shape.
+- [Design collections, forms, and dashboards](skills/coast-product-context/references/views-forms-and-dashboards.md) for the people doing the work.
+- [Separate automations from recurring records](skills/coast-product-context/references/automations-and-recurrence.md) when planning what happens next.
 
-References load individually, so only what a task needs enters context.
-
-## Scope
-
-This is product context, not a capability matrix or API reference. It describes how Coast is
-organised and what the terms mean. For exact tool behavior, read the Coast MCP tool schemas.
+Adapt the examples to the customer's process and existing configuration. For step-by-step configuration examples, use [Coast Workspace Patterns](../coast-workspace-patterns/). For available operations and exact parameters, read the connected Coast MCP tool schemas.

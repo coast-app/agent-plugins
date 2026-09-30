@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "coast-workspace-patterns",
+  "version": "0.1.1",
+  "description": "MCP recipes for configuring related workspaces, automations, forms, and dashboards in Coast.",
+  "author": {
+    "name": "Coast",
+    "url": "https://github.com/coast-app"
+  },
+  "repository": "https://github.com/coast-app/agent-plugins",
+  "keywords": [
+    "coast",
+    "mcp",
+    "workspace-design",
+    "automations",
+    "workflow-architecture"
+  ],
+  "dependencies": [
+    {
+      "name": "coast-context",
+      "marketplace": "coast"
+    }
+  ],
+  "skills": "./skills/"
+}

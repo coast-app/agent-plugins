@@ -1,4 +1,4 @@
 interface:
   display_name: "Coast Product Context"
-  short_description: "Shared Coast product terminology and concepts."
-  default_prompt: "Ground this in accurate Coast product terminology and concepts."
+  short_description: "Product concepts and modeling guidance for Coast workflows."
+  default_prompt: "Use $coast-product-context to model this process with Coast building blocks."

@@ -1,7 +1,7 @@
 {
     "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
     "name": "coast-mcp",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Connect Claude to your Coast workspace: workspaces, workflow templates, entities, automations, and messaging.",
     "author": {
         "name": "Coast",
@@ -17,7 +17,14 @@
         "field-service"
     ],
     "dependencies": [
-        "coast-context"
+        {
+            "name": "coast-context",
+            "marketplace": "coast"
+        },
+        {
+            "name": "coast-workspace-patterns",
+            "marketplace": "coast"
+        }
     ],
     "skills": "./skills/"
 }

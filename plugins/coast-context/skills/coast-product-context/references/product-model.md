@@ -1,176 +1,65 @@
 # Coast Product Model
 
-This reference gives the overall map of Coast: how the product is organized and how chat, workspaces, workflows, and cards/entities fit together.
+This reference maps Coast's organization, workspaces, people, conversations, navigation, and reusable workspace installations. For the shape of records, see [Workflow Building Blocks](workflow-building-blocks.md); for presentation, see [Views, Forms, And Dashboards](views-forms-and-dashboards.md).
 
-## Contents
+## Coast At A Glance
 
-- [One-Sentence Model](#one-sentence-model)
-- [Product Center](#product-center)
-- [Hierarchy](#hierarchy)
-- [Organizations And Businesses](#organizations-and-businesses)
-- [Workspace Sections](#workspace-sections)
-- [Users, Groups, And Membership](#users-groups-and-membership)
-- [Workspaces](#workspaces)
-- [Chat Threads](#chat-threads)
-- [Workflow Templates](#workflow-templates)
-- [Template Copies](#template-copies)
-- [Workflow Bundles](#workflow-bundles)
-- [Workflow Entities](#workflow-entities)
-- [Views](#views)
-- [Activity Feed](#activity-feed)
-- [Product Mental Model](#product-mental-model)
+Coast is a no-code platform where maintenance-heavy and operational teams communicate and manage structured work in configurable workspaces. Its product center is deskless operations and CMMS-style work: maintenance teams, work orders, preventive maintenance, assets, locations, parts, vendors, requests, inspections, and operational reporting. Other workflows can be modeled with the same building blocks.
 
-## One-Sentence Model
-
-Coast is a no-code platform where maintenance-heavy and operational teams communicate and manage structured work in configurable workspaces.
-
-## Product Center
-
-Coast is broadly configurable, but its product center is deskless operations and CMMS-style work: maintenance teams, work orders, preventive maintenance, assets, locations, parts, vendors, requests, inspections, and operational reporting.
-
-That context helps interpret examples. Coast can model many workflows, but the clearest examples usually come from maintenance, field service, facilities, operations, and other teams that need structured work plus team communication.
-
-## Hierarchy
-
-```text
-Organization / business
-  -> Workspace sections
-    -> Workspaces
-      -> Chat thread
-      -> Workflow template
-        -> Cards / workflow entities
-          -> Card/entity discussion thread
+```mermaid
+flowchart TD
+    Organization[Organization / business] -->|contains| Workspace[Workspace]
+    Organization -->|holds configuration| Template[Workflow template]
+    Organization -->|can organize with| Section[Optional workspace section]
+    Section -.->|groups for navigation| Workspace
+    Workspace -->|has| Conversation[Workspace conversation]
+    Workspace -->|optionally uses| Template
+    Workspace -->|contains when configured| Record[Card / workflow entity]
+    Template -->|defines structure of| Record
+    Record -->|has when standalone| Discussion[Record discussion]
 ```
 
-## Organizations And Businesses
+A workspace can sit outside a named section. Its workflow-template association is optional; the section does not own its records or template. A workflow template defines a record's structure. View templates configure how existing records appear in collections and how people view, edit, or submit forms; selecting one does not create an independent view or copy of the records.
 
-An organization is the top-level customer/account boundary in Coast. Internal APIs and MCP resources often call this a business. Access, users, workspaces, and data are scoped to an organization/business. A person can belong to multiple organizations/businesses, but a given workflow or workspace belongs to one context.
+## Organizations, Workspaces, And Sections
 
-In general explanations, organization is usually the clearest term unless the task is discussing API, MCP, or implementation details that use business.
+### Organization Boundary
 
-## Workspace Sections
+An organization is the top-level customer/account boundary. Internal APIs and MCP resources often call it a business. Access, users, workspaces, and data are scoped to an organization/business. A person can belong to multiple organizations/businesses, but a given workflow or workspace belongs to one context.
 
-Workspace sections organize workspaces into navigation groups. They are not the workflow itself; they help people find related spaces.
+### Workspaces
 
-Examples:
+Workspaces combine communication and structured work. Every workspace has a chat thread and members. A workflow workspace is also backed by a workflow template and contains cards/workflow entities; a communication workspace can be used for team conversation without structured records. A workflow workspace can offer several saved views over the same records.
 
-- Operations
-- Maintenance
-- Sales
-- Support
-- HR
-- Locations
+### Workspace Navigation
 
-## Users, Groups, And Membership
+Optional workspace sections group workspaces for navigation, such as Operations, Maintenance, Sales, Support, HR, or Locations. They are not workflows and do not own the workspaces' data. A person's favorite workspace is a separate client-local shortcut, not section membership or a workspace access grant. An organization bookmark is a named URL, not a workspace or saved view.
 
-Users are people in an organization/business. Workspaces have members, and membership plus role settings help determine what a person can see or do in that workspace.
+## People And Access
 
-User groups can help manage sets of people. They are useful for assignment or permission management when a workflow needs to reason about teams rather than one person at a time.
+Users are people in an organization/business. Workspaces have members; membership and role settings help determine what a person can see or do. User groups help manage sets of people and can be associated with workspace access. A Person field on a card names a user for a purpose such as assignment, but does not itself grant workspace access.
 
-Common access ideas:
+Common access levels include read-only viewing, editing or contributing, full administrative control, and personal record access within a workflow workspace. Organization roles and workspace record/configuration access answer different questions. Personal record access limits which records a member can see based on references to them in Person fields; it is unrelated to a private direct conversation.
 
-- read-only viewing
-- editing or contributing
-- full administrative control
-- private/personal access for direct messages
+**Presentation is not authorization.** A view can hide a field, make it read-only, filter a collection, or simplify a form for a role. These choices shape the experience, but do not replace the applicable organization and workspace access controls. A picker filter narrows choices, not access to the underlying records. Check access for the person and action instead of inferring it from assignment, view visibility, or a filtered list.
 
-Role labels vary by product surface, but common vocabulary includes organization-level owner/admin/non-admin ideas and workspace-level admin/editor/view-only or personal access. Exact labels can be support- or implementation-sensitive.
+## Conversations And Activity
 
-## Workspaces
+Workspace chat is for general discussion in a workspace. Standalone cards/workflow entities have their own discussion threads, keeping diagnosis, updates, files, and decisions attached to the exact work item. For example, Work Orders can have a general team thread while each work order has its own discussion. Embedded subform data stays inside its parent card; it is not an independently created child card with its own thread.
 
-Workspaces are the central container in Coast. A workspace has:
+The activity feed shows recent activity across Coast: what changed, who acted, and where attention may be needed. It complements workspace chat and record threads with a broader chronological view. A filtered collection or dashboard can focus attention on assigned, overdue, blocked, or upcoming work; the feed is a different surface for recent activity.
 
-- a chat thread for messages and collaboration
-- members and access levels
-- cards/workflow entities, if the workspace is backed by a workflow template
-- views that show workflow data in different ways
+## Reusing Workspace Configuration
 
-The important product idea is that workspaces combine communication and structured work. A team can discuss work in the same place where the work is tracked.
+Workflow bundles package a workflow workspace or a section of workspaces with their configuration, including templates, views, and automations, for reuse elsewhere. Coast curates the library's bundle listings. Customers can also share a workflow workspace or a section through an install link without publishing it to the library or entering an approval process.
 
-## Chat Threads
+Installing a bundle or creating a workflow workspace produces active, customizable workspaces and workflow template copies. Source/library templates and active workspace templates have different identities; [template copies](workflow-building-blocks.md#template-sources-and-installed-copies) explains why that matters for record values, views, automations, and later edits. Bundles are starting points, not locked products.
 
-Coast has workspace-level chat and card/entity-level discussion.
+## Working Mental Model
 
-- Workspace chat is for general discussion in the workspace.
-- Card/entity threads are attached to individual records, so discussion stays connected to the exact work item.
-
-Example: a Work Orders workspace can have a general team thread, while each work order has its own comment thread for diagnosis, updates, files, and decisions.
-
-## Workflow Templates
-
-A workflow template defines the shape of a workflow. It is similar to a schema, form definition, or database table design, but it is composed from Coast components instead of code.
-
-A template answers:
-
-- What kind of records exist here?
-- What fields do records have?
-- Which relationships connect records to other workspaces?
-- Which fields are editable, required, hidden, read-only, sortable, or filterable?
-- Which views and automations make the workflow useful?
-
-## Template Copies
-
-Workflow library and bundle templates are starting points. When a workflow workspace is created or a bundle is installed, Coast creates active template copies for the resulting workspace(s).
-
-This distinction matters:
-
-- A source/library template defines what can be installed.
-- A workspace's copied workflow template is what live cards, views, automations, and later edits use.
-- Source and installed template IDs identify different templates.
-
-## Workflow Bundles
-
-Workflow bundles are predefined collections of workspaces, templates, views, dashboards, and automations for common business scenarios.
-
-Bundles are starting points, not locked products. After a bundle is installed, the created workspaces and templates can be customized to match the customer's process.
-
-Coast curates the library's bundle listings. Customers can share a workflow workspace or a section of workspaces directly through an install link without publishing it to the library or entering an approval process. Either path installs customizable copies of the source configuration.
-
-## Workflow Entities
-
-A workflow entity is a single record made from a workflow template. In current UI/customer language, this is usually a card or the specific business noun.
-
-Examples:
-
-- work order
-- asset
-- location
-- procedure
-- inspection
-- cost entry
-- support request
-- customer account
-- sales lead
-
-Each card/entity has structured field values. Standalone cards, such as work orders and assets, have their own discussion threads.
-
-## Views
-
-View templates are saved configurations for presenting existing cards/workflow entities or collecting input for new ones. They do not create separate view objects or copies of the data.
-
-The same cards/workflow entities can appear in multiple views:
-
-- all records in a table
-- active work grouped by status on a board
-- due work on a calendar
-- one card/entity in a card/detail view
-
-A public external request form collects a new card/entity. A public shared-card view shows an existing record read-only.
-
-This separation matters: change the view template to change the experience; change the workflow template to change the underlying data model.
-
-## Activity Feed
-
-The activity feed shows recent activity across Coast. It is useful for understanding what changed, who acted, and where attention may be needed. It complements workspace chat and entity threads by giving a broader chronological view of activity.
-
-## Product Mental Model
-
-A compact mental model for Coast:
-
-- Workspaces are places where work happens.
-- Templates define the shape of the work.
-- Cards/entities are the actual work records.
-- Components are the fields and interactive pieces.
-- Views make the same work usable for different people and moments.
-- Automations make explicit things happen when records are created, updated, or manually acted on.
-- Bundles package common starting points, but teams can customize the resulting workspaces.
+- Workspaces are places where people communicate and work.
+- Workflow templates define the shape of records; cards/entities are the records themselves.
+- Components define fields and interactive pieces. Relationships connect records.
+- View templates configure collections and forms over the same records; dashboard widgets summarize or link to saved collection views.
+- Automations explicitly act on records, while recurring schedules generate separate occurrences.
+- Bundles install customizable workspace configurations.
