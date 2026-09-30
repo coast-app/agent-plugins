@@ -59,13 +59,11 @@ Common categories:
 
 The Scheduled Automation component invokes a rule relative to a record's Date field; an entity batch can participate in recurrence or batch creation. These are distinct behaviors explained in [Automations And Recurrence](automations-and-recurrence.md).
 
-### Evidence Fields
+Component names describe capabilities, not a customer's business meaning. A field labeled “Labor” could hold elapsed time, a numeric estimate, or a link to separate time entries. Choose the value shape first. Preserve customer-authored labels, placeholders, option names, and control text in the active form or view; do not derive placeholder or empty-state wording from a field name. These words explain the expected input but do not change the stored value or field behavior.
 
-Operational work may need files and photos, signatures, geolocation, timestamps, user attribution, and checklist results as proof. These fields support compliance, inspection, safety, delivery, and field-service scenarios. Choose the evidence the process actually needs and place it on the record or embedded subform where the event is captured.
+### Text, Numbers, And Contact Details
 
-### System Fields
-
-Coast records also have system-managed metadata such as creator, creation time, update time, sequence number, and links. These are useful for display, sorting, filtering, and auditing, but they are not normal user-authored fields.
+Use Text for a name, description, serial number, or other free-form answer. Short and long text differ in input presentation and configured length; the record title can be a selected Text field. Use Number when the answer is quantitative. Choose its basic, currency, or percentage format to match the meaning of the value, and preserve that format when reading or displaying it: a cost and a rate are not interchangeable bare numbers. Use structured Email Address and Web URL fields for contact addresses and links; use File or Image Upload when the content itself belongs on the record. An image upload is a file field restricted to images.
 
 ### Tags
 
@@ -85,6 +83,32 @@ For the choice between a finite category and an independently tracked thing, see
 Person fields refer to Coast users. They commonly support assignments, ownership, approvals, watchers, or internal recipients.
 
 A person field is different from a domain relationship. For example, a Technician field can assign work to a Coast user, while Vendor, Customer, Location, or Asset records can be linked as relationships. Assignment does not grant workspace access; see [People And Access](product-model.md#people-and-access).
+
+### Calendar Time, Elapsed Time, And Scheduling
+
+Use Date for one point in time, such as a due date or inspection date. Date Range presents a start and end together for a scheduled interval; it is backed by two Date fields. A Timer records elapsed time through start/stop intervals. Several completed intervals can accumulate on one record, and entries can be managed manually when recorded time needs correction. For example, one Work Order's Labor timer can total several visits. If each visit needs its own assignee, approval, rate, discussion, or reporting lifecycle, model separate related time-entry records instead.
+
+These fields do not create business behavior from their labels. A due date does not itself change status; a Timer named “Billable Hours” does not calculate an invoice. Date + Repeat supports recurring record creation, while Scheduled Automation invokes a configured rule relative to a Date field.
+
+### Addresses And Captured Locations
+
+Use Address for a selected physical place, such as a service address. Use Share Location or geolocation when the answer is a device-location observation captured with time and user context. A separately maintained facility or site with its own details and work history is a Location record linked through Related Card; a captured point is not a continuous location history. A work order can need both its service address and proof of where someone completed the work. [Evidence Fields](#evidence-fields) covers other forms of proof.
+
+### Evidence Fields
+
+Operational work may need files and photos, signatures, geolocation, timestamps, user attribution, and checklist results as proof. These fields support compliance, inspection, safety, delivery, and field-service scenarios. Choose the evidence the process actually needs and place it on the record or embedded subform where the event is captured.
+
+### Steps And Reusable Answers
+
+A To-do List keeps editable items and their completion states inside one record. It fits steps people add directly to a card. A Subform fits a reusable procedure or inspection whose configured questions may have different answer types and supporting notes or files. Its filled answers remain embedded in the parent record; it does not create a separate child card. Use related records when individual steps or inspections need their own lifecycle, views, or relationships. [Embedded Subforms](#embedded-subforms) covers their limits.
+
+### Presentation And Controls
+
+Some components help people use or read existing data instead of collecting an independent answer. Combined Tags presents selections from other Tag fields; an input button opens another field's input. Static or info text supplies configured instructions. A two-option Tag can have a checkbox presentation while still storing a selected tag option; a checkbox question inside a Subform is a different answer shape. Choose a control for the underlying answer it acts on, then configure its visible copy for the people using that form.
+
+### System Fields
+
+Coast records also have system-managed metadata such as creator, creation time, update time, sequence number, and links. These are useful for display, sorting, filtering, and auditing, but they are not normal user-authored fields.
 
 ## Relationships And Lookups
 

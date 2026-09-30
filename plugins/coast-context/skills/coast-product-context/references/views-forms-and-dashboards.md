@@ -84,6 +84,8 @@ Card views are where field order, sections, visibility, read-only behavior, and 
 
 In addition to shared presentation settings, a form's view template can set requiredness, defaults, prefilled values, and layout where supported. These settings govern the selected form without changing the underlying workflow template.
 
+The web builder does not let a view make a template-required field optional or a template-read-only field editable. When configuring through MCP, check the connected tool's override contract and the resulting form; do not assume builder restrictions or validation are identical across write paths.
+
 This matters for forms and role-specific views:
 
 - External request forms can hide internal triage fields and set starting defaults.

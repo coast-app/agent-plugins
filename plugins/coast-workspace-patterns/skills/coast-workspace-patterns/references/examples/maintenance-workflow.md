@@ -31,7 +31,7 @@ Both are planning fields set BEFORE work begins:
 - **Estimated Duration** — Used for scheduling and workload balancing
 - **Estimated Cost** — Used for budget approval before execution
 
-This example tracks actual cost and time as related records because each work order may have several entries with their own lifecycle. Other processes can record time in a Timer component or use a different cost structure. Compare estimates and actuals only when the workflow captures both consistently.
+This example tracks actual cost and time as [related Time Tracking](#time-tracking) and [Costs](#costs) records because each work order may have several entries with their own lifecycle. Other processes can record time in a Timer component on the work order or use a different cost structure. Compare estimates and actuals only when the workflow captures both consistently.
 
 #### Asset Operational Status (on the WO, not just the Asset)
 
@@ -41,7 +41,7 @@ A technician can update this field during repair, and a configured automation ca
 
 #### Created from Checklist
 
-The TAG `Created from Checklist` (Yes/No, default No) tracks WOs that were auto-created by an Inspection failure. When an Inspection's status is set to "Complete - Requires Attention," an automation creates a WO and sets this flag. This lets managers filter for inspection-generated WOs vs. manually created ones.
+The TAG `Created from Checklist` (Yes/No, default No) tracks WOs created by an optional Inspection extension. An automation on the Inspection template can react when its status changes to "Complete - Requires Attention," create a WO, set its **Inspection** RELATED_CARD back to the source record, and set this flag. Configure that status, relationship, and write before using the filter. This lets managers distinguish inspection-generated WOs from manually created ones.
 
 #### Source (Internal vs External)
 
@@ -54,13 +54,17 @@ The **Source** Tag is read-only in ordinary views and defaults to the option lab
 
 This example uses the [recurring queue recipe](../configure-recurring-work.md#optional-reveal-near-the-due-date): Due Date anchors the series, Category defaults classify its occurrences as PMs, and a hidden Visible Tag distinguishes work ready for an operational queue from upcoming work. Ordinary records and the first occurrence start visible; upcoming occurrences start hidden.
 
-A Scheduled Automation tied to Due Date invokes **Make Recurring Card Visible** one day before the occurrence is due. That enabled `ADHOC` rule updates the Visible Tag. Configure and verify the series, defaults, and reveal rule before creating the filtered queues below. Calendar and PM planning views can include upcoming work. Reminder delivery is a separate rule from revealing a record.
+A hidden **Queue Visibility** Scheduled Automation component tied to Due Date invokes **Make Recurring Card Visible** one day before the occurrence is due. That enabled `ADHOC` rule updates the Visible Tag. Configure and verify the series, defaults, and reveal rule before creating the filtered queues below. Calendar and PM planning views can include upcoming work. The separate **Reminders** component schedules notifications rather than revealing records.
+
+### Time Tracking
+
+Each labor entry has a **Labor Timer** and a **Work Order** RELATED_CARD selecting its parent. The work order's **Time Tracking** REFERENCED_IN displays all entries through that link. The work order also has a hidden **Current Labor Entry** RELATED_CARD selecting one entry for its status automation to stop; this stored selection is not the history of labor entries. The [bridge automation](#bridge-automations-entity_created) sets it when an entry is created.
 
 ### Asset Management
 
 #### Self-Referencing Hierarchy
 
-**Parent Asset** (`asset`) is a RELATED_CARD pointing to the SAME Asset Management template. This creates a tree: Building → Floor → HVAC Unit → Compressor. Enables rolling up maintenance history from child assets to parent assets.
+**Parent Asset** (`asset`) is a RELATED_CARD pointing to the SAME Asset Management template. This creates a tree: Building → Floor → HVAC Unit → Compressor. A configured view or calculation can use the hierarchy to roll up maintenance history; the link alone does not write a parent total.
 
 #### Depreciation Field Group
 
@@ -88,7 +92,7 @@ These are accounting/finance fields that most maintenance technicians never touc
 | Send Meter Alert Every... | Threshold for meter-based PM triggers |
 | Meter Value - Create WO every (readonly) | Running count for meter-based WO creation |
 
-Meter-based maintenance triggers WOs based on usage (e.g., every 500 hours). The threshold is set on the Asset; actual readings are logged in the Meters workspace.
+Meter-based maintenance is an optional extension: readings in the Meters workspace select their Asset through a RELATED_CARD, and a configured calculation or automation owns the Asset's displayed current reading and count. A separate threshold-crossing rule can create a WO based on usage (e.g., every 500 hours) and set its **Meters** RELATED_CARD to the readings that prompted the work. That optional work-order field appears in the detail layout below. The threshold is set on the Asset; linking a reading alone neither updates those values nor creates a WO.
 
 #### Checkout Tracking
 
@@ -108,9 +112,11 @@ This example models Locations as records with an Address component and relates o
 
 ### Downtime Tracking
 
+Each Downtime record has a **Timer** and a **Service Request** RELATED_CARD selecting its work order. The work order's **Downtime** REFERENCED_IN displays all linked intervals. Its hidden **Current Downtime** RELATED_CARD selects one interval for the stop automation, and the [bridge automation](#bridge-automations-entity_created) writes that selection when a Downtime record is created.
+
 #### Timer Auto-Start
 
-The example Downtime Timer uses `autoStart: true` to begin recording when its configured interaction starts it. Verify the resulting interval on a created record, especially if records can be imported or backdated. A timer does not by itself define when an asset is operational again.
+The example Downtime Timer has `autoStart: true` for its editable client form. The status automation explicitly supplies the Timer's `START` dynamic value when it creates the Downtime record; `autoStart` is not a server-side creation rule. Verify the resulting interval, especially if records can be imported or backdated. A timer does not by itself define when an asset is operational again.
 
 #### Downtime Type
 
@@ -380,7 +386,7 @@ On a Board where changing the grouped Tag is already supported, the same button 
 
 On a Calendar used only for planning, the button may add clutter. A scheduling workflow that needs quick status edits can make a different choice.
 
-The example PM List omits the buttons because its configured automation owns the relevant transitions. Another recurring workflow may allow direct status changes.
+The example PM List is a planning view that includes upcoming occurrences, so it omits quick-edit buttons. Technicians change a PM's Status in the editable Work Order detail Card or an operational List with **Update Status**. The status automations below react to those edits; they do not advance Status themselves.
 
 
 ## Automations
@@ -389,19 +395,27 @@ Use [author automations](../author-automations.md) for trigger and condition mec
 
 ### Bridge Automations (ENTITY_CREATED)
 
-- **"Set Downtime"** — Downtime Tracking: On create, sets the WO's hidden RELATED_CARD to this Downtime entity as its one intended current child. A later child replaces that selection; the bridge does not collect every child. Use `suppressAutomationChain: true` only after checking the intended downstream effects. See [related-record traversal recipe](../related-record-display-and-traversal.md) for the one-child limit and reconciliation choices.
+These two bridge rules use `suppressAutomationChain: true`: their writes maintain internal selection fields and should not trigger other work-order update rules. The timer-start rules below must allow chaining so the child-creation events can reach these bridges.
+
+- **"Set Downtime"** — Downtime Tracking: On create, follows its **Service Request** RELATED_CARD to set the WO's hidden **Current Downtime** RELATED_CARD to this Downtime entity as its one intended current child. A later child replaces that selection; the bridge does not collect every child. See [related-record traversal recipe](../related-record-display-and-traversal.md) for the one-child limit and reconciliation choices.
+- **"Set Current Labor Entry"** — Time Tracking: On create, follows the entry's **Work Order** RELATED_CARD and writes this entry into that work order's hidden **Current Labor Entry** RELATED_CARD. The reverse **Time Tracking** display still shows all entries; this stored bridge selects only the latest one for parent-side actions. Restrict creation of another running entry until the current one is stopped, since replacing the bridge cannot stop the former entry.
 
 ### Status-Driven Cross-Workspace Updates (ENTITY_UPDATED)
 
-- **"PM - Start Asset Downtime Timer"** — WOs: When status transitions to in-progress AND category is PM, creates a Downtime entity with timer started.
-- **"PM - Stop Asset Downtime Timer"** — WOs: When status transitions to complete AND category is PM, updates the current Downtime record's Timer with the STOP dynamic value through `UPDATE_WORKFLOW_ENTITY`. The [status-change recipe](../sync-related-record-on-status-change.md) shows the action and field-value structure.
-- **"WO - Start/Stop Work Order Timer"** — WOs: Same pattern for non-PM WOs, branched using IS_NONE_OF on PM category.
+Set `suppressAutomationChain: false` on both timer-start rules. Suppressing their child-creation events would leave the work order's current-child field unset or stale, so a later stop rule could not target the new Timer.
+
+- **"PM - Start Asset Downtime Timer"** — WOs: A transition into **In Progress** with Category PM creates a Downtime record, sets its **Service Request** RELATED_CARD to the triggering WO, and starts its Timer with `TIME_TRACKER_DATA_ACTION` / `START`. The child-side bridge selects it as **Current Downtime**.
+- **"PM - Stop Asset Downtime Timer"** — WOs: A transition out of **In Progress** with Category PM updates **Current Downtime** through `UPDATE_WORKFLOW_ENTITY`, writing `TIME_TRACKER_DATA_ACTION` / `STOP` to that record's Timer. This includes a move to **On Hold**, **Open**, or **Complete**, not only completion.
+- **"WO - Start Work Order Timer"** — WOs: A transition into **In Progress** with a selected non-PM Category creates one **Time Tracking** record, sets its **Work Order** RELATED_CARD to the triggering WO, and starts **Labor Timer** with `TIME_TRACKER_DATA_ACTION` / `START`. The child-side bridge selects it as **Current Labor Entry**.
+- **"WO - Stop Work Order Timer"** — WOs: A transition out of **In Progress** with a selected non-PM Category uses `UPDATE_WORKFLOW_ENTITY` through **Current Labor Entry** to write `TIME_TRACKER_DATA_ACTION` / `STOP` to **Labor Timer**. The [status-change recipe](../sync-related-record-on-status-change.md) shows the action and field-value structure.
 - **"Create/Update WO - Asset Non/Partially/Operational"** — WOs: Six automations (3 on ENTITY_CREATED, 3 on ENTITY_UPDATED) that sync Asset operational status based on a TAG field. Paired create+update automations ensure the sync fires both on initial WO creation and on later edits.
+
+This example starts ordinary work at **Open** (external requests first pass through **Pending Review**) and selects Category before moving to **In Progress**. Match the configured non-PM option values explicitly in that branch; an `IS_NONE_OF` PM condition alone may also admit an unset Category. These rules compare current and previous Status, so an unrelated edit while Status stays **In Progress** does not create another child. Keep Category fixed during an active interval. Before a later return to **In Progress**, check that the prior selected Timer stopped and that no other child is running; then the new entry becomes current while the reverse display retains the history. Verify each child's bridge write before the next status change. The one-current-child fields do not enforce exclusivity for manually created or reassigned children; reconcile those paths before enabling them. The [related-record traversal recipe](../related-record-display-and-traversal.md) explains that limit.
 
 ### Notification Automations
 
 - **"Email Notifications on External Work Order Create/Update"** — WOs: Fires email when Source tag = "external", emails the requester.
-- **"Send Reminder"** — WOs (ADHOC): Conditional push notification — sends "due soon" if Due Date > NOW, "overdue" if Due Date < NOW. Uses action-level conditions to split notification text. The Reminders component schedules this rule relative to Due Date.
+- **"Send Reminder"** — WOs (ADHOC): The top-level eligibility condition excludes Status **Complete** (the configured Tag value `"complete"`, compared as `["complete"]`), so scheduled reminders do not notify about completed work. Its two push actions retain their own Due Date conditions: "due soon" when Due Date > NOW and "overdue" when Due Date < NOW. The Reminders component schedules this rule relative to Due Date. This completed-work exclusion is this example's policy, not a default for all reminders.
 
 ### Recurring queue visibility
 
@@ -439,4 +453,4 @@ This example has six widgets spanning three workspaces:
 
 **Personal + team views.** "My Work Orders" (current-user filter) gives individuals their queue. "Overdue Work Orders" gives managers the global picture.
 
-**Count as KPI.** Each widget count is a live metric: overdue count should trend down, out-of-stock count should be zero.
+**Count as KPI.** Interpret each count using its backing collection. Overdue and out-of-stock counts indicate operational work; **PM List** and **All Work Orders and PMs** also count upcoming recurring records because their planning collections include them.

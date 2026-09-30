@@ -10,7 +10,7 @@ Recipes for designing, building, and revising workspace applications through Coa
 /reload-plugins
 ```
 
-The plugin depends on `coast-context@coast` for Coast's product vocabulary and modeling guidance. Connect a Coast MCP server to carry out the recipes; [`coast-mcp`](../coast-mcp) provides connection guidance. The [skill](skills/coast-workspace-patterns/SKILL.md) routes each task to the relevant recipe.
+The plugin uses `coast-context@coast` for Coast's product vocabulary and modeling guidance. Claude Code installs that dependency; Codex requires [explicit installation](../../README.md#codex). Connect a Coast MCP server to carry out the recipes; [`coast-mcp`](../coast-mcp) provides connection guidance. The [skill](skills/coast-workspace-patterns/SKILL.md) routes each task to the relevant recipe.
 
 ## Use
 

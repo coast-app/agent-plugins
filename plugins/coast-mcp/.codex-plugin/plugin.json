@@ -21,6 +21,7 @@
         "longDescription": "Connects agents to Coast over the Coast MCP server, with guidance for discovering templates, selecting tools, and supplying correct field values.",
         "developerName": "Coast",
         "category": "Productivity",
+        "capabilities": [],
         "defaultPrompt": [
             "Show me what is in my Coast workspace.",
             "Find the Coast entities that need attention.",

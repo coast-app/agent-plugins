@@ -21,6 +21,7 @@
         "longDescription": "Coast product concepts, domain terminology, and the workflow model: organizations, workspaces, workflow templates, components, views, forms, automations, and dashboards.",
         "developerName": "Coast",
         "category": "Productivity",
+        "capabilities": [],
         "defaultPrompt": [
             "Explain the relevant Coast concepts for this work.",
             "Use accurate Coast terminology in this answer.",

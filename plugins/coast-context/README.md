@@ -10,7 +10,7 @@ Product concepts and modeling guidance for agents designing and using Coast work
 /reload-plugins
 ```
 
-Installing [`coast-mcp`](../coast-mcp) pulls this in automatically.
+In Claude Code, installing [`coast-mcp`](../coast-mcp) pulls this in automatically. For Codex, follow the [explicit installation steps](../../README.md#codex).
 
 ## Use
 

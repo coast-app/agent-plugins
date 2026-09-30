@@ -14,12 +14,6 @@
     "automations",
     "workflow-architecture"
   ],
-  "dependencies": [
-    {
-      "name": "coast-context",
-      "marketplace": "coast"
-    }
-  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Coast Workspace Patterns",
@@ -27,6 +21,7 @@
     "longDescription": "Recipes for configuring Coast workflows through MCP: cross-workspace relationships, recurring visibility, inventory tracking, views, layouts, subforms, automations, and dashboard widgets. Choose a recipe for its stated use case and verify the connected tool contract.",
     "developerName": "Coast",
     "category": "Productivity",
+    "capabilities": [],
     "defaultPrompt": [
       "Design a Coast workspace for this process.",
       "Review this Coast workspace structure against the patterns.",
