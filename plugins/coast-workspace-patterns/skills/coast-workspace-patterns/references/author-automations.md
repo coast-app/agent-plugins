@@ -125,7 +125,7 @@ Summation — produces a numeric action result from matching relationship quanti
 
 The configured delivery channels here are email and push. The MCP tool descriptions specify the exact settings format, recipient field requirements, and which recipient sources each action supports. `SEND_NOTIFICATION` may appear as a deprecated email-compatible action name in a connected tool contract; it is not a third delivery channel. The key architectural decision is:
 
-- **PERSON field source** → push notification
+- **PERSON field source** → email or push notification. Email uses `recipientsFromPersonComponentIds`; confirm the connected tool exposes that setting before using it.
 - **EMAIL field on the current template** → email notification
 - **EMAIL field on a related record** → email (with related-card routing)
 

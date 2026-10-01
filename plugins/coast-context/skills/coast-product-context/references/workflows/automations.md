@@ -31,7 +31,7 @@ The web builder exposes 11 action choices:
 
 These are builder choices, not a promise that every plan, permission set, or client supports configuring every action. In-app notifications exist elsewhere in the product; the builder offers email and push actions here. For a concrete rule, confirm the audience, target, and available action in that configuration.
 
-Notification recipients need the right kind of destination. Email can use an address or an Email Address field; push targets Coast users, often selected through a Person field. A Vendor, Customer, Asset, or Location relationship remains a record link even when the workflow also stores contact information for delivery. An external-form link is a way to invite a submission; creating that link does not create the submitted record.
+Notification recipients need the right kind of destination. Email can use an address, an Email Address field, or Coast users selected through a Person field; push targets Coast users, often selected through a Person field. A Vendor, Customer, Asset, or Location relationship remains a record link even when the workflow also stores contact information for delivery. An external-form link is a way to invite a submission; creating that link does not create the submitted record.
 
 ## Execution, outputs, and change scope
 
