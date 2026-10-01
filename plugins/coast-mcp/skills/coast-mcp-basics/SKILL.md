@@ -1,25 +1,16 @@
 ---
 name: coast-mcp-basics
-description: How Coast data is organised — workspaces, workflow templates, workflow entities, and components — and which MCP tools to reach for. Use when working with a Coast workspace through the Coast MCP server, or when a request mentions Coast cards, workspaces, templates, automations, or entities.
+description: "Discover Coast workspaces and templates and read or write entities through MCP. Use for Coast MCP tool selection, identifiers, field value shapes, or rejected entity writes."
 ---
 
-# Working with Coast through MCP
+# Coast MCP Basics
 
-Coast models operational work as **entities** that live in **workspaces** and take their shape from a
-**workflow template**.
+Use `coast-context:coast-product-context` for Coast's product definitions and relationships. This skill
+covers discovering data and supplying valid entity fields through MCP. The connected server's tool
+schemas own available operations and accepted parameters.
 
-## The data model
-
-- **Workspace** — the container, roughly a team's area of work. Everything else is scoped to one.
-- **Workflow template** — the schema for a kind of work. It defines the **components** (fields) that
-  every entity of that kind carries.
-- **Workflow entity** — one record: a work order, an inspection, a task. Sometimes surfaced as a
-  "card" in the product and in older API names.
-- **Component** — one field on a template. Components are typed (text, number, date, person, tag,
-  related card, subform, and others), and each type has its own value shape.
-
-A template belongs to a workspace, and an entity always references the template it was created from.
-Read the template before writing entities: component IDs and their allowed values come from there.
+An entity's workflow template defines its components and allowed values. Read that template before
+writing fields, using the active template returned for the workspace.
 
 ## Finding your way around
 
@@ -30,8 +21,9 @@ Start broad and narrow down rather than guessing identifiers:
 3. `query_workflow_entities` or `count_workflow_entities` to read entities.
 4. `create_workflow_entities` / `update_workflow_entity` to write.
 
-Component IDs are UUIDs, not display labels. Field values are keyed by component ID, so a template
-read is a prerequisite for any write.
+Component IDs are opaque strings interpreted within their owning template. Use each ID exactly as
+`get_workflow_template` returns it; do not infer its format or derive it from a display label.
+Entity field values are keyed by those IDs.
 
 ## Value shapes that commonly trip people up
 
@@ -45,11 +37,10 @@ knowing before your first write:
 - **RELATED_CARD** — an array of objects, `[{ "id": "<uuid>" }]`, not bare UUID strings.
 - **DATE** — an ISO 8601 string. Past dates are valid.
 
-When a write is rejected, re-read the template before retrying; the error usually means a value shape
-or an option value does not match what the component defines.
+When a write is rejected, read the error and compare the supplied fields with the template and tool
+schema. Refresh the template when a component or option may have changed before retrying.
 
 ## Reading before writing
 
-Entity writes are not transactional across a batch — if one entity in a `create_workflow_entities`
-call is invalid, the whole batch fails. Validate against the template first, and prefer a small batch
-you can reason about over a large speculative one.
+The `create_workflow_entities` contract rejects the batch if an entity is invalid. Validate against
+the template first, and use a small batch whose field values have been checked.

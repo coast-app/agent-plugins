@@ -20,7 +20,7 @@
         },
         {
             "name": "coast-context",
-            "description": "Coast product domain and terminology: workspaces, workflow templates, components, views, forms, automations, and dashboards.",
+            "description": "Coast product concepts, behavior, terminology, and workflow modeling guidance.",
             "author": {
                 "name": "Coast",
                 "url": "https://github.com/coast-app"
@@ -28,6 +28,17 @@
             "category": "productivity",
             "source": "./plugins/coast-context",
             "homepage": "https://github.com/coast-app/agent-plugins/tree/main/plugins/coast-context"
+        },
+        {
+            "name": "coast-workspace-patterns",
+            "description": "MCP recipes for configuring related workspaces, automations, forms, and dashboards in Coast.",
+            "author": {
+                "name": "Coast",
+                "url": "https://github.com/coast-app"
+            },
+            "category": "productivity",
+            "source": "./plugins/coast-workspace-patterns",
+            "homepage": "https://github.com/coast-app/agent-plugins/tree/main/plugins/coast-workspace-patterns"
         }
     ]
 }

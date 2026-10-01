@@ -1,0 +1,31 @@
+{
+  "name": "coast-workspace-patterns",
+  "version": "0.1.1",
+  "description": "MCP recipes for configuring related workspaces, automations, forms, and dashboards in Coast.",
+  "author": {
+    "name": "Coast",
+    "url": "https://github.com/coast-app"
+  },
+  "repository": "https://github.com/coast-app/agent-plugins",
+  "keywords": [
+    "coast",
+    "mcp",
+    "workspace-design",
+    "automations",
+    "workflow-architecture"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Coast Workspace Patterns",
+    "shortDescription": "MCP recipes for configuring Coast workflows.",
+    "longDescription": "Recipes for configuring Coast workflows through MCP: cross-workspace relationships, recurring visibility, inventory tracking, views, layouts, subforms, automations, and dashboard widgets. Choose a recipe for its stated use case and verify the connected tool contract.",
+    "developerName": "Coast",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Design a Coast workspace for this process.",
+      "Review this Coast workspace structure against the patterns.",
+      "Build the automations this workflow needs."
+    ]
+  }
+}

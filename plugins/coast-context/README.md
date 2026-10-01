@@ -1,6 +1,6 @@
 # coast-context
 
-Coast product domain and terminology for agents, so they describe and model Coast work accurately.
+Product concepts and modeling guidance for agents designing and using Coast workflows. Paired with Coast MCP access, it helps customer agents turn operational needs into useful configurations and work with existing data.
 
 ## Install
 
@@ -10,24 +10,10 @@ Coast product domain and terminology for agents, so they describe and model Coas
 /reload-plugins
 ```
 
-Installing [`coast-mcp`](../coast-mcp) pulls this in automatically.
+In Claude Code, installing [`coast-mcp`](../coast-mcp) pulls this in automatically. For Codex, follow the [explicit installation steps](../../README.md#codex).
 
-## What you get
+## Use
 
-The `coast-product-context` skill, covering:
+Use `coast-product-context` to understand existing Coast configuration or design a workflow. Start with [The shape of Coast](skills/coast-product-context/references/product-model.md), then use the [product reference index](skills/coast-product-context/references/ontology.md) to find the relevant concepts and behavior. [Modeling decisions](skills/coast-product-context/references/modeling-decisions.md) helps translate an operational process into records, components, relationships, views, and automations.
 
-| Reference | Contents |
-| --- | --- |
-| `glossary.md` | Product vocabulary, and how it maps to older API naming |
-| `product-model.md` | Organizations, workspace sections, workspaces, chat, templates, entities |
-| `workflow-building-blocks.md` | Templates, entities, components, relationships, subforms |
-| `views-forms-and-dashboards.md` | Card and collection views, external forms, layouts, dashboards |
-| `automations-and-behavior.md` | Automations, notifications, scheduling, computed values |
-| `modeling-notes.md` | How Coast primitives map onto real operational work |
-
-References load individually, so only what a task needs enters context.
-
-## Scope
-
-This is product context, not a capability matrix or API reference. It describes how Coast is
-organised and what the terms mean. For exact tool behavior, read the Coast MCP tool schemas.
+Adapt the examples to the customer's process and existing configuration. For step-by-step configuration recipes, use [Coast Workspace Patterns](../coast-workspace-patterns/). For available operations and exact parameters, read the connected Coast MCP tool schemas.

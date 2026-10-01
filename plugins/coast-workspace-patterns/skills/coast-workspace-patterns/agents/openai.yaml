@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coast Workspace Patterns"
+  short_description: "MCP recipes for configuring Coast workflows."
+  default_prompt: "Use $coast-workspace-patterns to choose and adapt a recipe for this Coast workflow."

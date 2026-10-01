@@ -1,6 +1,6 @@
 {
     "name": "coast-mcp",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Connect agents to your Coast workspace: workspaces, workflow templates, entities, automations, and messaging.",
     "author": {
         "name": "Coast",
@@ -18,9 +18,10 @@
     "interface": {
         "displayName": "Coast MCP",
         "shortDescription": "Connect to your Coast workspace.",
-        "longDescription": "Connects agents to Coast over the Coast MCP server, with guidance on the Coast data model and the field value shapes that most often cause failed writes.",
+        "longDescription": "Connects agents to Coast over the Coast MCP server, with guidance for discovering templates, selecting tools, and supplying correct field values.",
         "developerName": "Coast",
         "category": "Productivity",
+        "capabilities": [],
         "defaultPrompt": [
             "Show me what is in my Coast workspace.",
             "Find the Coast entities that need attention.",

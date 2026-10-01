@@ -1,7 +1,7 @@
 # coast-mcp
 
-Connects Claude to your [Coast](https://coastapp.com) workspace over the Coast MCP server, and bundles
-a skill covering how Coast data is organised.
+Connects Claude to your [Coast](https://coastapp.com) workspace over the Coast MCP server, with guidance
+for finding data and supplying valid field values.
 
 ## Install
 
@@ -16,8 +16,8 @@ a skill covering how Coast data is organised.
 **MCP server** — `https://mcp.coastapp.com/mcp`, registered as `coast`. Authentication happens through
 your browser the first time Claude calls a Coast tool; no API key or configuration is needed.
 
-**Skill** — `coast-mcp-basics` explains workspaces, workflow templates, workflow entities, and
-components, and covers the field value shapes that most often cause failed writes.
+**Skill** — `coast-mcp-basics` covers tool selection, identifiers, and field value shapes for entity
+reads and writes. The companion [Coast Context](../coast-context/) plugin explains product concepts and modeling choices; [Coast Workspace Patterns](../coast-workspace-patterns/) supplies configuration recipes. Claude installs both as dependencies. See the [marketplace setup](../../README.md#install) for Codex installation.
 
 ## What Claude can do
 
